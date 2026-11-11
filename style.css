@@ -1,3 +1,4 @@
+
 :root {
     --ink: #061416;
     --panel: #0b1d20;
@@ -16,6 +17,10 @@
     margin: 0;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     overflow-x: hidden;
     background-color: var(--ink);
@@ -29,17 +34,24 @@ body {
     font: 400 1rem/1.6 "DM Sans", "Segoe UI", sans-serif;
 }
 
+img {
+    max-width: 100%;
+}
+
 .wrap {
+    width: 100%;
     max-width: 1280px;
     margin: 0 auto;
     padding: 0 56px;
 }
 
-/* Barra superior */
+/* BARRA SUPERIOR */
+
 .topbar {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    gap: 15px;
     padding: 28px 0 18px;
     border-bottom: 1px solid var(--line);
     color: var(--mute);
@@ -59,6 +71,7 @@ body {
 }
 
 .live i {
+    flex-shrink: 0;
     width: 9px;
     height: 9px;
     border-radius: 50%;
@@ -66,12 +79,13 @@ body {
     box-shadow: 0 0 12px var(--teal);
 }
 
-/* Hero: el nombre gigante va detrás de la foto */
+/* PRESENTACIÓN PRINCIPAL */
+
 .hero {
     position: relative;
     display: grid;
     height: 780px;
-    grid-template-columns: 1fr 440px 1fr;
+    grid-template-columns: minmax(0, 1fr) 440px minmax(0, 1fr);
     align-items: end;
     gap: 32px;
 }
@@ -88,6 +102,7 @@ body {
     color: transparent;
     font: 400 clamp(9rem, 22vw, 21rem) / 0.9 var(--display);
     text-align: center;
+    white-space: nowrap;
     pointer-events: none;
     animation: drop 1100ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
@@ -95,6 +110,7 @@ body {
 .photo {
     position: relative;
     z-index: 2;
+    width: 100%;
     height: 500px;
     grid-column: 2;
     grid-row: 1;
@@ -141,6 +157,7 @@ body {
     box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
     color: #04282a;
     font-weight: 700;
+    white-space: nowrap;
 }
 
 .badge-a {
@@ -165,6 +182,7 @@ body {
 
 .intro,
 .stats {
+    position: relative;
     z-index: 3;
     grid-row: 1;
     padding-bottom: 48px;
@@ -221,7 +239,8 @@ h1 {
     line-height: 1.35;
 }
 
-/* Franja en movimiento */
+/* FRANJA ANIMADA */
+
 .band {
     overflow: hidden;
     margin: 20px -3vw 0;
@@ -245,7 +264,8 @@ h1 {
     text-transform: uppercase;
 }
 
-/* Encabezados de sección */
+/* ENCABEZADOS */
+
 .head {
     display: flex;
     align-items: center;
@@ -272,16 +292,18 @@ h2 {
     text-transform: uppercase;
 }
 
-/* Intereses */
+/* TARJETAS DE INTERESES */
+
 .panels {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 18px;
 }
 
 .panel {
     position: relative;
     display: flex;
+    min-width: 0;
     min-height: 330px;
     flex-direction: column;
     justify-content: flex-end;
@@ -321,13 +343,29 @@ h2 {
     font-size: 0.92rem;
 }
 
-.p-art { --g: linear-gradient(170deg, #2de2d0, #0b5d61); }
-.p-dance { --g: linear-gradient(170deg, #fff1bd, #ffd978); --t: #1b2a1f; }
-.p-game { --g: linear-gradient(170deg, #5fb7ff, #0d3b66); }
-.p-music { --g: linear-gradient(170deg, #8ef0c0, #0e5b4a); }
-.p-learn { --g: linear-gradient(170deg, #0f7f86, #04282b); }
+.p-art {
+    --g: linear-gradient(170deg, #2de2d0, #0b5d61);
+}
 
-/* Aspiraciones, forma de ser y cita */
+.p-dance {
+    --g: linear-gradient(170deg, #fff1bd, #ffd978);
+    --t: #1b2a1f;
+}
+
+.p-game {
+    --g: linear-gradient(170deg, #5fb7ff, #0d3b66);
+}
+
+.p-music {
+    --g: linear-gradient(170deg, #8ef0c0, #0e5b4a);
+}
+
+.p-learn {
+    --g: linear-gradient(170deg, #0f7f86, #04282b);
+}
+
+/* ASPIRACIONES Y FORMA DE SER */
+
 .trio {
     display: grid;
     grid-template-columns: 1.1fr 1.1fr 0.8fr;
@@ -338,6 +376,7 @@ h2 {
 }
 
 .col {
+    min-width: 0;
     padding: 38px;
 }
 
@@ -439,7 +478,8 @@ h2 {
     opacity: 0.85;
 }
 
-/* Cierre */
+/* CIERRE */
+
 .outro {
     padding-top: 120px;
     padding-bottom: 90px;
@@ -458,9 +498,413 @@ h2 {
     text-transform: none;
 }
 
-/* Animaciones */
+/* TABLETAS Y PORTÁTILES PEQUEÑOS */
+
+@media (max-width: 1050px) {
+    .wrap {
+        padding-right: 35px;
+        padding-left: 35px;
+    }
+
+    .hero {
+        height: auto;
+        min-height: 680px;
+        grid-template-columns: minmax(0, 1fr) minmax(280px, 340px);
+        align-items: center;
+        gap: 28px;
+        padding: 140px 0 35px;
+    }
+
+    .giant {
+        top: 25px;
+        font-size: clamp(8rem, 19vw, 14rem);
+    }
+
+    .intro {
+        grid-column: 1;
+        grid-row: 1;
+        align-self: end;
+        padding-bottom: 20px;
+    }
+
+    h1 {
+        font-size: clamp(2.8rem, 5.5vw, 4rem);
+    }
+
+    .photo {
+        width: 100%;
+        height: 430px;
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .badge-a {
+        left: -25px;
+    }
+
+    .badge-b {
+        right: -20px;
+    }
+
+    .badge-c {
+        right: -15px;
+    }
+
+    .stats {
+        display: grid;
+        grid-column: 1 / -1;
+        grid-row: 2;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        padding: 0;
+    }
+
+    .stats li {
+        gap: 12px;
+        border-bottom: 1px solid var(--line);
+    }
+
+    .stats b {
+        min-width: auto;
+        font-size: 2.6rem;
+    }
+
+    .panels {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .panel {
+        min-height: 290px;
+    }
+
+    .trio {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .col {
+        padding: 30px;
+    }
+
+    .quote {
+        grid-column: 1 / -1;
+        min-height: 200px;
+    }
+}
+
+/* CELULARES */
+
+@media (max-width: 700px) {
+    .wrap {
+        padding-right: 22px;
+        padding-left: 22px;
+    }
+
+    .topbar {
+        align-items: center;
+        padding: 20px 0 15px;
+        font-size: 0.76rem;
+    }
+
+    .live {
+        gap: 7px;
+        font-size: 0.72rem;
+        text-align: right;
+    }
+
+    .hero {
+        display: grid;
+        height: auto;
+        min-height: 0;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0;
+        padding: 105px 0 25px;
+    }
+
+    .giant {
+        top: 8px;
+        left: 50%;
+        width: 100%;
+        font-size: clamp(4.3rem, 18vw, 8rem);
+        text-align: center;
+        translate: -50% 0;
+    }
+
+    .intro {
+        grid-column: 1;
+        grid-row: 1;
+        padding: 0 0 28px;
+    }
+
+    .hello {
+        font-size: 1.9rem;
+    }
+
+    h1 {
+        margin: 8px 0 14px;
+        font-size: clamp(2.8rem, 10vw, 4rem);
+        line-height: 1.02;
+    }
+
+    .role {
+        font-size: 0.95rem;
+    }
+
+    .bio {
+        max-width: 500px;
+        font-size: 0.92rem;
+        line-height: 1.6;
+    }
+
+    .photo {
+        width: min(78%, 330px);
+        height: clamp(340px, 105vw, 420px);
+        grid-column: 1;
+        grid-row: 2;
+        margin: 5px auto 35px;
+        border-radius: 180px 180px 24px 24px;
+    }
+
+    .photo::before {
+        translate: 12px 12px;
+    }
+
+    .photo img {
+        object-position: center 25%;
+    }
+
+    .badge {
+        padding: 8px 12px;
+        font-size: 0.78rem;
+    }
+
+    .badge-a {
+        top: 35px;
+        left: -35px;
+    }
+
+    .badge-b {
+        top: 55px;
+        right: -35px;
+    }
+
+    .badge-c {
+        top: 125px;
+        right: -30px;
+    }
+
+    .stats {
+        display: grid;
+        grid-column: 1;
+        grid-row: 3;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+        padding: 0;
+    }
+
+    .stats li {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 12px 0;
+    }
+
+    .stats b {
+        font-size: 2.5rem;
+    }
+
+    .stats span {
+        font-size: 0.76rem;
+    }
+
+    /* FRANJA */
+
+    .band {
+        margin-top: 15px;
+        padding: 12px 0;
+    }
+
+    .band-track {
+        gap: 30px;
+    }
+
+    .band-track span {
+        font-size: 1.25rem;
+    }
+
+    /* ENCABEZADOS */
+
+    .head {
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 70px 0 25px;
+    }
+
+    .head::after {
+        flex-basis: 100%;
+        order: 3;
+    }
+
+    h2 {
+        font-size: 1.9rem;
+    }
+
+    .head p {
+        font-size: 0.8rem;
+    }
+
+    /* INTERESES */
+
+    .panels {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .panel {
+        min-height: 260px;
+        padding: 17px;
+        border-radius: 85px 85px 18px 18px;
+    }
+
+    .panel .emoji {
+        top: 32px;
+        font-size: 3.4rem;
+    }
+
+    .panel h3 {
+        font-size: 1.55rem;
+    }
+
+    .panel p {
+        font-size: 0.82rem;
+        line-height: 1.45;
+    }
+
+    .panel:hover {
+        translate: 0;
+    }
+
+    /* ASPIRACIONES */
+
+    .trio {
+        grid-template-columns: minmax(0, 1fr);
+        border-radius: 20px;
+    }
+
+    .col {
+        padding: 27px 23px;
+    }
+
+    .col + .col {
+        border-top: 1px solid var(--line);
+        border-left: none;
+    }
+
+    .col h3 {
+        font-size: 1.65rem;
+    }
+
+    .dream {
+        font-size: clamp(2.5rem, 9vw, 3.2rem);
+    }
+
+    .col > p:not(.dream) {
+        font-size: 0.93rem;
+    }
+
+    .quote {
+        grid-column: 1;
+        min-height: 190px;
+    }
+
+    .quote p {
+        font-size: 2.3rem;
+    }
+
+    /* CIERRE */
+
+    .outro {
+        padding-top: 85px;
+        padding-bottom: 65px;
+    }
+
+    .outro p {
+        font-size: clamp(2.1rem, 8vw, 3.2rem);
+    }
+}
+
+/* CELULARES MUY PEQUEÑOS */
+
+@media (max-width: 380px) {
+    .wrap {
+        padding-right: 17px;
+        padding-left: 17px;
+    }
+
+    .topbar {
+        font-size: 0.7rem;
+    }
+
+    .live {
+        font-size: 0.65rem;
+    }
+
+    .giant {
+        font-size: 17vw;
+    }
+
+    h1 {
+        font-size: 2.65rem;
+    }
+
+    .photo {
+        width: 76%;
+        height: 330px;
+    }
+
+    .badge-a {
+        left: -27px;
+    }
+
+    .badge-b {
+        right: -27px;
+    }
+
+    .badge-c {
+        right: -23px;
+    }
+
+    .stats {
+        gap: 8px;
+    }
+
+    .stats span {
+        font-size: 0.69rem;
+    }
+
+    .panel {
+        min-height: 235px;
+        padding: 14px;
+    }
+
+    .panel h3 {
+        font-size: 1.35rem;
+    }
+
+    .panel p {
+        font-size: 0.76rem;
+    }
+
+    .col {
+        padding: 23px 18px;
+    }
+}
+
+/* ANIMACIONES */
+
 @keyframes slide {
-    to { transform: translateX(-50%); }
+    to {
+        transform: translateX(-50%);
+    }
 }
 
 @keyframes rise {
@@ -477,6 +921,8 @@ h2 {
     }
 }
 
+/* ACCESIBILIDAD */
+
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -484,5 +930,6 @@ h2 {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
     }
 }
